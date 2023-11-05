@@ -83,6 +83,10 @@ average humidity: {average_humi:.2f}\n""")
     system(f"git commit -m {commit_msg}")
     system("git push origin master")
 
+    with open(f"READMD.md", "w") as md:
+        md.write(f"""Hello gardener!
+                 Newest report: [{time.strftime('%Y-%m-%d')}](https://hehehwang.github.io/gardener/doc/{time.strftime('%Y-%m-%d')}.md)""")
+
 
 def main():
     board = pyfirmata.Arduino("/dev/ttyUSB0")
