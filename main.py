@@ -16,7 +16,8 @@ def get_curr_time():
     return time.localtime().tm_hour
 
 def do_routine(csv_file_name:str):
-    with open("csv_file_name", "r") as f:
+    print("time has come")
+    with open(csv_file_name, "r") as f:
         next(f)
         time_lst = []
         temp_lst = []
@@ -78,7 +79,7 @@ def do_routine(csv_file_name:str):
         md.write(f"""![some image](https://hehehwang.github.io/gardener/img/{time.strftime('%Y-%m-%d')}.jpg)\n
 average temperature: {average_temp:.2f}\n
 average humidity: {average_humi:.2f}\n""")
-    system("git add csv/* img/*")
+    system("git add doc/* csv/* img/*")
     commit_msg = f"write log {time.strftime('%Y-%m-%d')}"
     system(f"git commit -m {commit_msg}")
     system("git push origin master")
@@ -131,3 +132,6 @@ def main():
 
         time.sleep(60)
         
+
+if __name__ == "__main__":
+    main()
