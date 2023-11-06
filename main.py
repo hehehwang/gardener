@@ -76,9 +76,10 @@ def do_routine(csv_file_name:str):
         print(f"{average_humi=:.2f}")
 
     with open(f"doc/{time.strftime('%Y-%m-%d')}.md", 'w') as md:
-        md.write(f"""![some image](https://hehehwang.github.io/gardener/img/{time.strftime('%Y-%m-%d')}.jpg)\n
-average temperature: {average_temp:.2f}\n
-average humidity: {average_humi:.2f}\n""")
+        md.write(f"""![some image](https://hehehwang.github.io/gardener/img/{time.strftime('%Y-%m-%d')}.jpg)
+                 
+average temperature: {average_temp:.2f}
+average humidity: {average_humi:.2f}""")
     system("git add doc/* csv/* img/*")
     commit_msg = f"write log {time.strftime('%Y-%m-%d')}"
     system(f"git commit -m {commit_msg}")
