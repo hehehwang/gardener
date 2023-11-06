@@ -80,15 +80,15 @@ def do_routine(csv_file_name:str):
                  
 Temperature: {min_temp:.2f} < {average_temp:.2f} < {max_temp:.2f}
 Humidity: {min_humi:.2f} < {average_humi:.2f} < {max_humi:.2f}""")
-    system("git add README.md doc/* csv/* img/*")
-    commit_msg = f"write log {time.strftime('%Y-%m-%d')}"
-    system(f"git commit -m {commit_msg}")
-    system("git push origin master")
 
     with open(f"README.md", "w") as md:
         md.write(f"""Hello gardener!
                  Newest report: [{time.strftime('%Y-%m-%d')}](https://hehehwang.github.io/gardener/doc/{time.strftime('%Y-%m-%d')}.md)""")
 
+    system("git add README.md doc/* csv/* img/*")
+    commit_msg = f"write log {time.strftime('%Y-%m-%d')}"
+    system(f'git commit -m "{commit_msg}"')
+    system("git push origin master")
 
 def main():
     board = pyfirmata.Arduino("/dev/ttyUSB0")
