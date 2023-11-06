@@ -26,9 +26,9 @@ def do_routine(csv_file_name:str):
         max_humi,min_humi = -9999, 9999
         for line in f:
             if "," not in line: break
-            date,time,temp,humi = line.split(",")
-            Y,M,D = map(int, date.split("-"))
-            h,m,s = map(int, time.split(":"))
+            d,t,temp,humi = line.split(",")
+            Y,M,D = map(int, d.split("-"))
+            h,m,s = map(int, t.split(":"))
             dt = datetime(Y,M,D,h,m,s)
             time_lst.append(dt)
 
