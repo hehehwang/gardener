@@ -84,6 +84,7 @@ Humidity: {min_humi:.2f} < {average_humi:.2f} < {max_humi:.2f}""")
 
     with open(f"README.md", "w") as md:
         md.write(f"""Hello gardener!
+                 
                  Newest report: [{time.strftime('%Y-%m-%d')}](https://hehehwang.github.io/gardener/doc/{time.strftime('%Y-%m-%d')})""")
 
     system("git add README.md doc/* csv/* img/*")
