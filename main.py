@@ -79,11 +79,12 @@ def do_routine(csv_file_name:str):
         md.write(f"""![some image](https://hehehwang.github.io/gardener/img/{time.strftime('%Y-%m-%d')}.jpg)
                  
 Temperature: {min_temp:.2f} < {average_temp:.2f} < {max_temp:.2f}
+
 Humidity: {min_humi:.2f} < {average_humi:.2f} < {max_humi:.2f}""")
 
     with open(f"README.md", "w") as md:
         md.write(f"""Hello gardener!
-                 Newest report: [{time.strftime('%Y-%m-%d')}](https://hehehwang.github.io/gardener/doc/{time.strftime('%Y-%m-%d')}.md)""")
+                 Newest report: [{time.strftime('%Y-%m-%d')}](https://hehehwang.github.io/gardener/doc/{time.strftime('%Y-%m-%d')})""")
 
     system("git add README.md doc/* csv/* img/*")
     commit_msg = f"write log {time.strftime('%Y-%m-%d')}"
