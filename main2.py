@@ -71,6 +71,7 @@ class Board:
 
 def main():
     board = Board()
-    while sleep(60):
+    while 1:
         board.routine()
         do_gitwork()
+        sleep(60)

@@ -14,7 +14,6 @@ PERIOD_TIME = 6
 HUMI_TOLERANCE = 10
 TEMP_TOLERANCE = 10
 
-
 def get_curr_time():
     return time.localtime().tm_hour
 
@@ -155,11 +154,9 @@ def main():
                 continue
             prev_humi, prev_temp = humi, temp
             break
-
-        with open(logfile_name, "a") as f:
-            f.write(
-                f"{time.strftime('%Y-%m-%d')}, {time.strftime('%H:%M:%S')}, {temp:.2f}, {humi:.2f}\n"
-            )
+        
+        with open(logfile_name, 'a') as f:
+            f.write(f"{time.strftime('%Y-%m-%d')}, {time.strftime('%H:%M:%S')}, {temp:.2f}, {humi:.2f}\n") 
 
         # if camera_cntr == 0 and (6 < time.localtime().tm_hour < 20):
         #     camera.capture(f"/home/gardener/test_scripts/img_save/{time.strftime('%Y%m%d_%H%M%S')}_{temp:.0f}_{humi:.0f}.png")
