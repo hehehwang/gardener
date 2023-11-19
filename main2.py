@@ -22,7 +22,7 @@ class Board:
         csv_filepath = Path(f"csv/{y}-{m}.csv")
         self.datamanager = Datamanager(csv_filepath)
 
-        self.last_reported = datetime(0, 0, 0, 0, 0, 0)
+        self.last_reported = datetime(1990, 1, 1, 1, 1, 1)
 
     def read_sensor(self) -> tuple[float, float]:
         retry_counter = 0
@@ -32,7 +32,7 @@ class Board:
             humi = humi if humi is not None else INVALID_VALUE_FLOAT
 
             if temp == INVALID_VALUE_FLOAT or humi == INVALID_VALUE_FLOAT:
-                self.invalid_counter += 1
+                print("please check connection between sensor")
                 return temp, humi
 
             if (
@@ -44,21 +44,24 @@ class Board:
             ):
                 self.prev_temp = temp
                 self.prev_humi = humi
-
                 return temp, humi
+            
             else:
-                sleep(1)
                 retry_counter += 1
+                print("failed to read sensor, retry...")
+                sleep(1)
                 continue
 
     def routine(self):
-        temp, humi = self.read_sensor()
-        _, curr_month, curr_day, curr_hour, _ = get_time()
-
+        _, curr_month, curr_day, curr_hour, curr_minute = get_time()
+        
         if 6 < curr_hour < 21:
             self.fan_pwm.write(0.6)
         else:
             self.fan_pwm.write(0.0)
+
+        temp, humi = self.read_sensor()
+        # print(curr_day, curr_hour, curr_minute, temp, humi)
 
         self.datamanager.write_datum(temp, humi)
         if curr_hour == REPORT_TIME and (
@@ -66,6 +69,7 @@ class Board:
             self.last_reported.hour,
         ) != (curr_day, curr_hour):
             self.publish_report()
+            do_gitwork()
             self.last_reported = datetime.now()
 
 
@@ -73,5 +77,7 @@ def main():
     board = Board()
     while 1:
         board.routine()
-        do_gitwork()
         sleep(60)
+
+if __name__ == "__main__":
+    main()
