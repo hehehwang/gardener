@@ -68,7 +68,7 @@ class Board:
             self.last_reported.day,
             self.last_reported.hour,
         ) != (curr_day, curr_hour):
-            self.publish_report()
+            self.datamanager.publish_report()
             do_gitwork()
             self.last_reported = datetime.now()
 
