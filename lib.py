@@ -1,9 +1,11 @@
 from datetime import datetime
+from os import system as sysmsg
 from pathlib import Path
-from const import *
+
 from matplotlib import dates as mdates
 from matplotlib import pyplot as plt
-from os import system as sysmsg
+
+from const import *
 
 
 def get_time() -> tuple[int, int, int, int, int]:
@@ -126,14 +128,14 @@ def plot_and_save_temp_humi(
         temp_lst.append(temp)
         humi_lst.append(humi)
 
-    plt.title(f"{timestamp_lst[0]}")
+    plt.title(f"{datetime.now().replace(second=0, microsecond=0)}")
 
-    ax1.plot(timestamp_lst, roll_data(temp_lst), color="green", label="temperature")
+    ax1.plot(timestamp_lst, roll_data(temp_lst), color="crimson", label="temperature")
     ax1.plot(
         timestamp_lst,
         [temp_avg] * len(timestamp_lst),
-        ":",
-        color="darkgreen",
+        "--",
+        color="red",
         label="average",
     )
     ax1.set_xticks(timestamp_lst[::72])
@@ -142,12 +144,12 @@ def plot_and_save_temp_humi(
     ax1.legend(loc="upper right")
 
     ax2 = ax1.twinx()
-    ax2.plot(timestamp_lst, roll_data(humi_lst), color="deeppink", label="humidity")
+    ax2.plot(timestamp_lst, roll_data(humi_lst), color="royalblue", label="humidity")
     ax2.plot(
         timestamp_lst,
         [humi_avg] * len(timestamp_lst),
-        ":",
-        color="red",
+        "--",
+        color="darkblue",
         label="average",
     )
 
@@ -176,5 +178,5 @@ def do_gitwork():
 
 if __name__ == "__main__":
     # test
-    dm = Datamanager(Path("csv/test.csv"))
+    dm = Datamanager(Path("csv/2023-11.csv"))
     dm.publish_report()
