@@ -2,6 +2,7 @@ Hello gardener!
 
 # Report list
 
+* [2023-11-26_6](https://hehehwang.github.io/gardener/doc//2023-11-26_6)
 * [2023-11-25_6](https://hehehwang.github.io/gardener/doc//2023-11-25_6)
 * [2023-11-24_6](https://hehehwang.github.io/gardener/doc//2023-11-24_6)
 * [2023-11-23_6](https://hehehwang.github.io/gardener/doc//2023-11-23_6)
