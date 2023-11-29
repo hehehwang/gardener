@@ -1,6 +1,7 @@
 from datetime import datetime
 from os import system as sysmsg
 from pathlib import Path
+from typing import Optional
 
 from matplotlib import dates as mdates
 from matplotlib import pyplot as plt
@@ -27,10 +28,12 @@ class Datamanager:
             f.write(f"{timestamp.isoformat()}, {temp:.2f}, {humi:.2f}\n")
 
     def gather_past_data(
-        self, reference: datetime = datetime.now(), days: int = 1
+        self, reference: Optional[datetime] = None, days: int = 1
     ) -> tuple[
         dict[datetime, tuple[float, float]], float, float, float, float, float, float
     ]:
+        if reference is None:
+            reference = datetime.now()
         now_ref = reference
         past_ref = now_ref.replace(day=now_ref.day - days)
 
