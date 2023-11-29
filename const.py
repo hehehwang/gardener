@@ -8,3 +8,6 @@ WEBPAGE_DOC_URL = "https://hehehwang.github.io/gardener/doc/"
 
 HUMI_TOLERANCE = 10
 TEMP_TOLERANCE = 10
+
+FAN_START_TIME = 6
+FAN_END_TIME = 21

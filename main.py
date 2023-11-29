@@ -55,7 +55,7 @@ class Board:
     def routine(self):
         _, curr_month, curr_day, curr_hour, curr_minute = get_time()
         
-        if 6 < curr_hour < 21:
+        if FAN_START_TIME < curr_hour < FAN_END_TIME:
             self.fan_pwm.write(0.6)
         else:
             self.fan_pwm.write(0.0)
